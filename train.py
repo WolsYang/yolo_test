@@ -3,7 +3,7 @@ from clearml import Task
 import sys
 task = Task.init(
     project_name="pcb_yolo_training_img_size", 
-    task_name="e50_p30_i640_b4_x")
+    task_name="e50_p30_i640_b8_cm")
     
 def main():
     # 訓練一個乾淨的模型 (Train from scratch)
@@ -13,14 +13,14 @@ def main():
     # 如果沒有它會去它自己的安裝目錄下找內建的配置文件。
     # model = YOLO("yolo12n.yaml")
     # task.set_parameter("model_variant", "yolo12n")
-    model = YOLO("yolo12x.yaml")
-    task.set_parameter("model_variant", "yolo12x")
+    model = YOLO("yolo12m.yaml")
+    task.set_parameter("model_variant", "yolo12m")
     args = dict(
-        data="pcb_data.yaml", 
+        data="pcb_data_cut.yaml", 
         epochs=50,
         patience=30,
         imgsz=640,
-        batch=4,
+        batch=8,
         # project="pcb_yolo_training_50",
         # name="yolov12_pcb_scratch_50"
         )
